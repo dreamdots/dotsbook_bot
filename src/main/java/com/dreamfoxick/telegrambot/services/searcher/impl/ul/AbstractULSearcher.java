@@ -1,6 +1,6 @@
 package com.dreamfoxick.telegrambot.services.searcher.impl.ul;
 
-import com.dreamfoxick.telegrambot.services.downloader.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.downloader.html.HtmlDownloader;
 import com.dreamfoxick.telegrambot.services.searcher.impl.AbstractSearcher;
 import lombok.val;
 import org.apache.commons.lang3.tuple.Pair;

@@ -35,12 +35,12 @@ public class SearcherInvoker {
 
     public Map<String, String[]> searchBook(String link) throws IOException, IllegalArgumentException {
         log(link, Thread.currentThread().getStackTrace()[1].getMethodName());
-        return bookPage.search(link, BASE_SITE_URL);
+        return bookPage.search(link, SITE_URL);
     }
 
     public Map<String, String[]> searchAuthor(String link) throws IOException, IllegalArgumentException {
         log(link, Thread.currentThread().getStackTrace()[1].getMethodName());
-        return authorPage.search(link, BASE_SITE_URL);
+        return authorPage.search(link, SITE_URL);
     }
 
     public Map<String, String[]> searchBooks(String bookName) throws IOException, IllegalArgumentException {

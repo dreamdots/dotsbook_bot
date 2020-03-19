@@ -1,11 +1,13 @@
 package com.dreamfoxick.telegrambot.services.searcher.impl.page;
 
-import com.dreamfoxick.telegrambot.services.downloader.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.downloader.html.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.enums.RegEx;
 import com.dreamfoxick.telegrambot.services.searcher.impl.AbstractSearcher;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import static com.dreamfoxick.telegrambot.services.enums.URLConstant.BASE_SITE_URL;
+import static com.dreamfoxick.telegrambot.services.enums.URLConstant.SITE_URL;
+import static com.dreamfoxick.telegrambot.utils.StringUtil.insertSlash;
 import static java.lang.String.format;
 
 public abstract class AbstractPageSearcher extends AbstractSearcher {
@@ -23,6 +25,9 @@ public abstract class AbstractPageSearcher extends AbstractSearcher {
 
     @Override
     protected String buildRequestUrl(String link) {
-        return format("%s%s", BASE_SITE_URL.getURL(), link);
+        if (link.matches(RegEx.BOOK_LINK_REQUEST.getRegEx()) || link.matches(RegEx.AUTHOR_LINK_REQUEST.getRegEx())) {
+            return format("%s%s", SITE_URL.getURL(), insertSlash(link));
+        }
+        throw new IllegalArgumentException("Неверный формат ссылки, попробуйте начать поиск заного");
     }
 }

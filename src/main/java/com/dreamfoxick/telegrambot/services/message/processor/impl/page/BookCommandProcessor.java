@@ -7,6 +7,7 @@ import com.dreamfoxick.telegrambot.services.statecontroller.State;
 import com.dreamfoxick.telegrambot.services.statecontroller.StateController;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -30,6 +31,7 @@ public class BookCommandProcessor extends AbstractCommandProcessor {
     private final SearcherInvoker searcherInvoker;
     private final QueryRegister queryRegister;
 
+    @Autowired
     public BookCommandProcessor(StateController<Long, State> stateController,
                                 QueryRegister queryRegister,
                                 SearcherInvoker searcherInvoker) {
@@ -42,7 +44,7 @@ public class BookCommandProcessor extends AbstractCommandProcessor {
     @Override
     public void process(long chatId,
                         String link,
-                        TelegramLongPollingBot bot) throws TelegramApiException, IOException {
+                        TelegramLongPollingBot bot) throws TelegramApiException, IOException, IllegalArgumentException {
         // восстанавливаю ссылку
         val bookId = insertSlash(link);
         log.debug(format("Book link restored: %s", bookId));

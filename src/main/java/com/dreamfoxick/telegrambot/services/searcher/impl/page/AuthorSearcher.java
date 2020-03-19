@@ -1,6 +1,7 @@
 package com.dreamfoxick.telegrambot.services.searcher.impl.page;
 
-import com.dreamfoxick.telegrambot.services.downloader.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.downloader.html.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.enums.RegEx;
 import com.dreamfoxick.telegrambot.services.searcher.impl.AbstractSearcher;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -45,7 +46,8 @@ public class AuthorSearcher extends AbstractPageSearcher {
     @Override
     protected Map<String, String[]> getResult(Elements elements,
                                               String authorLink) throws IllegalArgumentException {
-        if (elements.isEmpty()) throw new IllegalArgumentException("Нет такого автора");
+        if (elements.isEmpty()) throw new IllegalArgumentException(format("По ссылке: %s нет результата",
+                authorLink.replaceAll(RegEx.AUTHOR_LINK_SECOND_SLASH.getRegEx(), "")));
         return elements
                 .stream()
                 .filter(AbstractSearcher::isBookLink)

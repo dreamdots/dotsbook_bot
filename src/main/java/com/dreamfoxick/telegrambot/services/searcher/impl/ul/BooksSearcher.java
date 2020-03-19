@@ -1,6 +1,6 @@
 package com.dreamfoxick.telegrambot.services.searcher.impl.ul;
 
-import com.dreamfoxick.telegrambot.services.downloader.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.downloader.html.HtmlDownloader;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jsoup.nodes.Document;

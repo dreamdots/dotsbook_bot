@@ -6,7 +6,7 @@ import com.dreamfoxick.telegrambot.services.register.QueryRegister;
 import com.dreamfoxick.telegrambot.services.searcher.SearcherInvoker;
 import com.dreamfoxick.telegrambot.services.statecontroller.State;
 import com.dreamfoxick.telegrambot.services.statecontroller.StateController;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
@@ -26,7 +26,8 @@ public class BooksCommandProcessor extends AbstractULCommandProcessor {
     private final StateController<Long, State> stateController;
     private final SearcherInvoker searcherInvoker;
 
-    public BooksCommandProcessor(@Qualifier("stateController") StateController<Long, State> stateController,
+    @Autowired
+    public BooksCommandProcessor(StateController<Long, State> stateController,
                                  QueryRegister queryRegister,
                                  SearcherInvoker searcherInvoker) {
         super(queryRegister);

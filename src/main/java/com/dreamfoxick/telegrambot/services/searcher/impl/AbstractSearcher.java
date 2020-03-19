@@ -1,6 +1,6 @@
 package com.dreamfoxick.telegrambot.services.searcher.impl;
 
-import com.dreamfoxick.telegrambot.services.downloader.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.downloader.html.HtmlDownloader;
 import com.dreamfoxick.telegrambot.services.enums.URLConstant;
 import com.dreamfoxick.telegrambot.services.searcher.Searcher;
 import lombok.RequiredArgsConstructor;
@@ -71,11 +71,7 @@ public abstract class AbstractSearcher implements Searcher {
                                                        String param) throws IllegalArgumentException;
 
     private Document getHTMLDocumentFromUrl(String URL) throws IOException {
-        try {
-            val http = htmlDownloader.downloadHTML(URL);
-            return Jsoup.parse(http);
-        } catch (IOException ex) {
-            throw new IOException("Ошибка установки соединения с библиотекой. Попробуйте позже");
-        }
+        val http = htmlDownloader.download(URL);
+        return Jsoup.parse(http);
     }
 }

@@ -100,6 +100,14 @@ public class UpdateHandlerImpl implements UpdateHandler {
             uState = this.updateUserStateIfNeeded(chatId, text, uState);
             log.info(format("ChatId: %d has a state: %s", chatId, uState));
             switch (uState) {
+                case FIND_BOOK_STATE:
+                    log.info(format("Execute 'findBook' command for chatId: %d", chatId));
+                    commandProcessorInvoker.processFindBook(chatId, text, bot);
+                    break;
+                case FIND_AUTHOR_STATE:
+                    log.info(format("Execute 'findAuthor' command for chatId: %d", chatId));
+                    commandProcessorInvoker.processFindAuthor(chatId, text, bot);
+                    break;
                 case FIND_BOOKS_STATE:
                     log.info(format("Execute 'findBooks' command for chatId: %d", chatId));
                     commandProcessorInvoker.processFindBooks(chatId, text, bot);
@@ -107,14 +115,6 @@ public class UpdateHandlerImpl implements UpdateHandler {
                 case FIND_AUTHORS_STATE:
                     log.info(format("Execute 'findAuthors' command for chatId: %d", chatId));
                     commandProcessorInvoker.processFindAuthors(chatId, text, bot);
-                    break;
-                case FIND_AUTHOR_STATE:
-                    log.info(format("Execute 'findAuthor' command for chatId: %d", chatId));
-                    commandProcessorInvoker.processFindAuthor(chatId, text, bot);
-                    break;
-                case FIND_BOOK_STATE:
-                    log.info(format("Execute 'findBook' command for chatId: %d", chatId));
-                    commandProcessorInvoker.processFindBook(chatId, text, bot);
                     break;
                 default:
                     commandExecutorInvoker.defaultCommand(chatId, bot);

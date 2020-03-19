@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 public enum URLConstant {
     FIND_BOOKS_URL("http://flibusta.site/booksearch?ask=PARAM&chb=on"),
     FIND_AUTHORS_URL("http://flibusta.site/booksearch?ask=PARAM&cha=on"),
-    BASE_SITE_URL("http://flibusta.site");
+    SITE_URL("http://flibusta.site"),
+    ONION_URL("http://flibustahezeous3.onion");
 
     @Getter
     private final String URL;

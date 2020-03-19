@@ -17,7 +17,6 @@ import java.util.*;
 import static com.dreamfoxick.telegrambot.services.enums.Pattern.DOWNLOAD_QUERY_CALLBACK_DATA;
 import static com.dreamfoxick.telegrambot.services.enums.Pattern.UPDATE_QUERY_CALLBACK_DATA;
 import static com.dreamfoxick.telegrambot.services.enums.RegEx.*;
-import static com.dreamfoxick.telegrambot.services.enums.URLConstant.BASE_SITE_URL;
 import static com.dreamfoxick.telegrambot.services.message.creator.EditMessageCreator.*;
 import static com.dreamfoxick.telegrambot.services.message.creator.KeyboardCreator.backKeyboard;
 import static com.dreamfoxick.telegrambot.services.message.creator.KeyboardCreator.createInline;
@@ -254,6 +253,6 @@ public class QueryRegisterImpl implements QueryRegister {
     private String buildDownloadURL(String bookId,
                                     String format) {
         bookId = insertSlash(bookId);
-        return format("%s%s/%s", BASE_SITE_URL.getURL(), bookId, format);
+        return format("%s/%s", bookId, format);
     }
 }

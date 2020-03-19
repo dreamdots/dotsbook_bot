@@ -1,6 +1,6 @@
 package com.dreamfoxick.telegrambot.services.searcher.impl.page;
 
-import com.dreamfoxick.telegrambot.services.downloader.HtmlDownloader;
+import com.dreamfoxick.telegrambot.services.downloader.html.HtmlDownloader;
 import com.dreamfoxick.telegrambot.services.enums.RegEx;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -68,7 +68,8 @@ public class BookSearcher extends AbstractPageSearcher {
     @Override
     protected Map<String, String[]> getResult(Elements elements,
                                               String bookLink) throws IllegalArgumentException {
-        if (elements.isEmpty()) throw new IllegalArgumentException("Нет такой книги");
+        if (elements.isEmpty()) throw new IllegalArgumentException(format("По ссылке: %s нет результата",
+                bookLink.replaceAll(RegEx.BOOK_LINK_SECOND_SLASH.getRegEx(), "")));
         val result = new HashMap<String, String[]>();
         result.put(bookLink, new String[7]);
         log.trace(format("Book link: %s", bookLink));

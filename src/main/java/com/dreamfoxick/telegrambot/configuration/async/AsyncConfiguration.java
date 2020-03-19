@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executor;
@@ -16,6 +17,7 @@ import static com.dreamfoxick.telegrambot.configuration.threadfactory.ExecutorUt
 
 @Slf4j
 @Configuration
+@PropertySource("classpath:bot.properties")
 public class AsyncConfiguration {
 
     @Bean(name = "longPollExec")
@@ -23,9 +25,9 @@ public class AsyncConfiguration {
         val runtime = Runtime.getRuntime();
         val exec = new ThreadPoolExecutor(
                 // целевой размер пула
-                runtime.availableProcessors() + 1,
+                runtime.availableProcessors() + 20,
                 // максимальный размер пула
-                runtime.availableProcessors() + 1,
+                runtime.availableProcessors() + 21,
                 // время, которое нужно прождать потоку в бейздействии до уничтожения
                 Short.MAX_VALUE,
                 // TimeUnit для предыдущего значения
