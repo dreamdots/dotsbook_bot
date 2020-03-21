@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.dreamfoxick.telegrambot.services.enums.RegEx.BOOK_LINK_SECOND_SLASH;
-import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_BOOK_STATE;
+import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_BOOKS_STATE;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -42,7 +42,7 @@ public class BooksCommandProcessor extends AbstractULCommandProcessor {
 
     @Override
     protected void updateState(long chatId) {
-        stateController.updateIfPresent(chatId, FIND_BOOK_STATE);
+        stateController.updateIfPresent(chatId, FIND_BOOKS_STATE);
     }
 
     @Override

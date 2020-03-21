@@ -4,6 +4,7 @@ import com.dreamfoxick.telegrambot.services.downloader.file.FileDownloader;
 import com.dreamfoxick.telegrambot.services.enums.Pattern;
 import com.dreamfoxick.telegrambot.services.message.handler.exception.ExceptionProcessor;
 import com.dreamfoxick.telegrambot.services.message.handler.query.QueryHandler;
+import com.dreamfoxick.telegrambot.services.statecontroller.State;
 import com.dreamfoxick.telegrambot.services.statecontroller.StateController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import static com.dreamfoxick.telegrambot.services.enums.RegEx.DOWNLOAD_QUERY;
 import static com.dreamfoxick.telegrambot.services.enums.RegEx.UPDATE_QUERY;
 import static com.dreamfoxick.telegrambot.services.message.creator.KeyboardCreator.backKeyboard;
 import static com.dreamfoxick.telegrambot.services.message.creator.SendDocumentCreator.createSendDocumentWithReplyKeyboard;
+import static com.dreamfoxick.telegrambot.services.statecontroller.State.MAIN_MENU_STATE;
 import static java.lang.String.format;
 
 @Slf4j
@@ -33,6 +35,7 @@ import static java.lang.String.format;
 public class QueryHandlerImpl implements QueryHandler {
     private final StateController<String, Map<Integer, EditMessageText>> updateQueryController;
     private final StateController<String, String> downloadQueryController;
+    private final StateController<Long, State> stateController;
 
     private final ExceptionProcessor exceptionProcessor;
     private final FileDownloader fileDownloader;
@@ -65,6 +68,7 @@ public class QueryHandlerImpl implements QueryHandler {
         val bookFile = fileDownloader.download(chatId, URL, bot);
         val bookDocument = createSendDocumentWithReplyKeyboard(chatId, bookFile, backKeyboard());
         bot.execute(bookDocument);
+        stateController.updateIfPresent(chatId, MAIN_MENU_STATE);
         Files.delete(bookFile.toPath());
     }
 

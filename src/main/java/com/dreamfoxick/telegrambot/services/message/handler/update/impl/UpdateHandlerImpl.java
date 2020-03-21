@@ -26,6 +26,7 @@ import static com.dreamfoxick.telegrambot.services.message.handler.CommandButton
 import static com.dreamfoxick.telegrambot.services.message.handler.HandlerUtil.*;
 import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_AUTHOR_STATE;
 import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_BOOK_STATE;
+import static com.dreamfoxick.telegrambot.utils.StringUtil.insertSlash;
 import static java.lang.String.format;
 
 @Slf4j
@@ -102,11 +103,11 @@ public class UpdateHandlerImpl implements UpdateHandler {
             switch (uState) {
                 case FIND_BOOK_STATE:
                     log.info(format("Execute 'findBook' command for chatId: %d", chatId));
-                    commandProcessorInvoker.processFindBook(chatId, text, bot);
+                    commandProcessorInvoker.processFindBook(chatId, insertSlash(text), bot);
                     break;
                 case FIND_AUTHOR_STATE:
                     log.info(format("Execute 'findAuthor' command for chatId: %d", chatId));
-                    commandProcessorInvoker.processFindAuthor(chatId, text, bot);
+                    commandProcessorInvoker.processFindAuthor(chatId, insertSlash(text), bot);
                     break;
                 case FIND_BOOKS_STATE:
                     log.info(format("Execute 'findBooks' command for chatId: %d", chatId));

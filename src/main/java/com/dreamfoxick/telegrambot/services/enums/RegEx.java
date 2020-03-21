@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum RegEx {
     BOOK_LINK("/b/[\\d]+"),
+    AUTHOR_LINK("/a/[\\d]+"),
 
     /**
      * Для работы searcher
@@ -31,7 +32,7 @@ public enum RegEx {
     /**
      * Для обработки queries
      */
-    DOWNLOAD_QUERY("[\\d]+_/b[\\d]+_[\\w]+"),
+    DOWNLOAD_QUERY("[\\d]+_/b/[\\d]+_[\\w]+"),
     UPDATE_QUERY("(next|back)_[\\d]{1,3}");
 
     @Getter

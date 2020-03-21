@@ -18,8 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_BOOK_STATE;
-import static com.dreamfoxick.telegrambot.utils.StringUtil.insertSlash;
+import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_BOOKS_STATE;
 import static java.lang.String.format;
 import static java.lang.String.join;
 import static java.util.stream.Collectors.toUnmodifiableList;
@@ -43,12 +42,8 @@ public class BookCommandProcessor extends AbstractCommandProcessor {
 
     @Override
     public void process(long chatId,
-                        String link,
+                        String bookId,
                         TelegramLongPollingBot bot) throws TelegramApiException, IOException, IllegalArgumentException {
-        // восстанавливаю ссылку
-        val bookId = insertSlash(link);
-        log.debug(format("Book link restored: %s", bookId));
-
         // получаю Map<String, String[]> с информацией
         val result = this.getResult(bookId);
         log.debug("Result map getting");
@@ -60,7 +55,7 @@ public class BookCommandProcessor extends AbstractCommandProcessor {
         // обновляю состояние в соответсвии с запросом
         this.updateState(chatId);
 
-        this.sendResult(chatId, link, response, bot);
+        this.sendResult(chatId, bookId, response, bot);
     }
 
     @Override
@@ -70,7 +65,7 @@ public class BookCommandProcessor extends AbstractCommandProcessor {
 
     @Override
     protected void updateState(long chatId) {
-        stateController.updateIfPresent(chatId, FIND_BOOK_STATE);
+        stateController.updateIfPresent(chatId, FIND_BOOKS_STATE);
     }
 
     /**

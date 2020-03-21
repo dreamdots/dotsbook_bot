@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.dreamfoxick.telegrambot.services.enums.RegEx.AUTHOR_LINK_SECOND_SLASH;
-import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_AUTHOR_STATE;
+import static com.dreamfoxick.telegrambot.services.statecontroller.State.FIND_AUTHORS_STATE;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -42,7 +42,7 @@ public class AuthorsCommandProcessor extends AbstractULCommandProcessor {
 
     @Override
     protected void updateState(long chatId) {
-        stateController.updateIfPresent(chatId, FIND_AUTHOR_STATE);
+        stateController.updateIfPresent(chatId, FIND_AUTHORS_STATE);
     }
 
     @Override
