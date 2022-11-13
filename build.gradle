@@ -27,7 +27,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop:2.2.5.RELEASE'
-    implementation 'com.github.xabgesagtx:telegram-spring-boot-starter:0.21'
+    implementation 'com.github.xabgesagtx:telegram-spring-boot-starter:0.26'
+    implementation group: 'commons-net', name: 'commons-net', version: '3.6'
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'com.google.guava:guava'
     implementation 'org.jsoup:jsoup:1.7.2'

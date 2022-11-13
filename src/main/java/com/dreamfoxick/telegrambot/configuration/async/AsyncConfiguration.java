@@ -36,8 +36,8 @@ public class AsyncConfiguration {
                 new ArrayBlockingQueue<>(Short.MAX_VALUE),
                 // кастомная фабрика потоков для именования и ведения статистики
                 new CustomThreadFactory(
-                        "async",
-                        "worker",
+                        "krnl",
+                        "wr",
                         new AtomicInteger(0),
                         new AtomicInteger(0),
                         "Startup long poll thread: %s. Alive thread: %d",

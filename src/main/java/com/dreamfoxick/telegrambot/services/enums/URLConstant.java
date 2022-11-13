@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum URLConstant {
-    FIND_BOOKS_URL("http://flibusta.site/booksearch?ask=PARAM&chb=on"),
-    FIND_AUTHORS_URL("http://flibusta.site/booksearch?ask=PARAM&cha=on"),
+    FIND_BOOKS_URL("http://flibusta.is/booksearch?ask=PARAM&chb=on"),
+    FIND_AUTHORS_URL("http://flibusta.is/booksearch?ask=PARAM&cha=on"),
     SITE_URL("http://flibusta.site"),
-    ONION_URL("http://flibustahezeous3.onion");
+    IS_URL("http://flibusta.is");
 
     @Getter
     private final String URL;

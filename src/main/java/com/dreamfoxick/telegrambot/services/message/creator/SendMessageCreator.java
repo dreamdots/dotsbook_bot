@@ -32,7 +32,7 @@ public class SendMessageCreator {
     public static SendMessage createSendMessageWithoutKeyboard(long chatId,
                                                                String text) {
         val message = new SendMessage();
-        message.setChatId(chatId);
+        message.setChatId(String.valueOf(chatId));
         message.setText(text);
         message.enableNotification();
         message.disableWebPagePreview();

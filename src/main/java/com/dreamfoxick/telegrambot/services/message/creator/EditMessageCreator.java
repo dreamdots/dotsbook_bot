@@ -63,7 +63,7 @@ public class EditMessageCreator {
                                                   int replyId,
                                                   String text) {
         val editMessage = new EditMessageText();
-        editMessage.setChatId(chatId);
+        editMessage.setChatId(String.valueOf(chatId));
         editMessage.setMessageId(replyId);
         editMessage.setText(text);
         editMessage.disableWebPagePreview();

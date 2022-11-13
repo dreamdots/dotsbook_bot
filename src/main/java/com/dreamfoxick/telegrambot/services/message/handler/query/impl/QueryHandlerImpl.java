@@ -6,6 +6,7 @@ import com.dreamfoxick.telegrambot.services.message.handler.exception.ExceptionP
 import com.dreamfoxick.telegrambot.services.message.handler.query.QueryHandler;
 import com.dreamfoxick.telegrambot.services.statecontroller.State;
 import com.dreamfoxick.telegrambot.services.statecontroller.StateController;
+import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -64,7 +65,7 @@ public class QueryHandlerImpl implements QueryHandler {
                                       String queryData,
                                       TelegramLongPollingBot bot) throws IOException, TelegramApiException {
         log.info(format("Received download query -> %s", queryData));
-        val URL = downloadQueryController.get(queryData);
+        val URL = downloadQueryController.get(queryData).replaceAll("//", "/");
         val bookFile = fileDownloader.download(chatId, URL, bot);
         val bookDocument = createSendDocumentWithReplyKeyboard(chatId, bookFile, backKeyboard());
         bot.execute(bookDocument);

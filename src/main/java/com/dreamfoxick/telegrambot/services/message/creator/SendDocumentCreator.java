@@ -2,6 +2,7 @@ package com.dreamfoxick.telegrambot.services.message.creator;
 
 import lombok.val;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
 import java.io.File;
@@ -12,8 +13,8 @@ public class SendDocumentCreator {
                                                           File sourceFile) {
         val sendDocument = new SendDocument();
 
-        sendDocument.setDocument(sourceFile);
-        sendDocument.setChatId(chatId);
+        sendDocument.setDocument(new InputFile(sourceFile));
+        sendDocument.setChatId(String.valueOf(chatId));
         return sendDocument;
     }
 

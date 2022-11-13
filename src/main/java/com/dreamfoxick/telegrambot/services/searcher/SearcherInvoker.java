@@ -1,5 +1,6 @@
 package com.dreamfoxick.telegrambot.services.searcher;
 
+import com.dreamfoxick.telegrambot.services.enums.URLConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -35,12 +36,12 @@ public class SearcherInvoker {
 
     public Map<String, String[]> searchBook(String link) throws IOException, IllegalArgumentException {
         log(link, Thread.currentThread().getStackTrace()[1].getMethodName());
-        return bookPage.search(link, SITE_URL);
+        return bookPage.search(link, URLConstant.SITE_URL);
     }
 
     public Map<String, String[]> searchAuthor(String link) throws IOException, IllegalArgumentException {
         log(link, Thread.currentThread().getStackTrace()[1].getMethodName());
-        return authorPage.search(link, SITE_URL);
+        return authorPage.search(link, URLConstant.SITE_URL);
     }
 
     public Map<String, String[]> searchBooks(String bookName) throws IOException, IllegalArgumentException {

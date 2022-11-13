@@ -5,6 +5,7 @@ import com.dreamfoxick.telegrambot.services.message.creator.SendMessageCreator;
 import com.dreamfoxick.telegrambot.services.statecontroller.State;
 import com.dreamfoxick.telegrambot.services.statecontroller.StateController;
 import com.dreamfoxick.telegrambot.utils.LoggerUtils;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,19 @@ import static com.dreamfoxick.telegrambot.services.statecontroller.State.MAIN_ME
 public class ExceptionProcessor {
     private final StateController<Long, State> stateController;
 
-    @Value("${admin_chat_id}")
-    private long adminChatId;
-
     @SneakyThrows
     public void processIllegalArgumentException(long chatId,
                                                 IllegalArgumentException ex,
                                                 TelegramLongPollingBot bot) {
         LoggerUtils.logStackTrace(ex);
         this.process(chatId, ex.getMessage(), bot);
+    }
+
+    @SneakyThrows
+    public void processJsonMappingException(long chatId,
+        JsonMappingException ex,
+        TelegramLongPollingBot bot) {
+        LoggerUtils.logStackTrace(ex);
     }
 
     @SneakyThrows
